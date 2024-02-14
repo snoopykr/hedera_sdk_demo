@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"hedera_sdk_demo/dot_env"
 	"os"
 
 	"github.com/hashgraph/hedera-sdk-go/v2"
@@ -19,6 +20,8 @@ type contract struct {
 func main() {
 	var client *hedera.Client
 	var err error
+
+	dot_env.Init()
 
 	net := os.Getenv("HEDERA_NETWORK")
 	client, err = hedera.ClientForName(net)

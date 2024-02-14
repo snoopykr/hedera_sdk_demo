@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"hedera_sdk_demo/dot_env"
 	"os"
 
 	"github.com/hashgraph/hedera-sdk-go/v2"
@@ -36,6 +37,8 @@ func additionalLogic(privateKey hedera.PrivateKey, keyList *hedera.KeyList, addr
 func main() {
 	var client *hedera.Client
 	var err error
+
+	dot_env.Init()
 
 	// Retrieving network type from environment variable HEDERA_NETWORK
 	client, err = hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))

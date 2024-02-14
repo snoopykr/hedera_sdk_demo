@@ -3,10 +3,13 @@ package main
 import (
 	"fmt"
 	"github.com/hashgraph/hedera-sdk-go/v2"
+	"hedera_sdk_demo/dot_env"
 	"os"
 )
 
 func main() {
+	dot_env.Init()
+
 	client, err := hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))
 	if err != nil {
 		panic(fmt.Sprintf("%v : error creating client", err))

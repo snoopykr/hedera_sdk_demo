@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
+	"hedera_sdk_demo/dot_env"
 	"os"
 
 	"github.com/hashgraph/hedera-sdk-go/v2"
 )
 
 func main() {
+	dot_env.Init()
+
 	// Our hypothetical primary service only knows the operator/sender's account ID and the recipient's accountID
 	operatorAccountID, err := hedera.AccountIDFromString(os.Getenv("OPERATOR_ID"))
 	if err != nil {

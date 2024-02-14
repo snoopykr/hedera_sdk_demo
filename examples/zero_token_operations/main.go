@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/hashgraph/hedera-sdk-go/v2"
 	"github.com/hashgraph/hedera-sdk-go/v2/examples/contract_helper"
+	"hedera_sdk_demo/dot_env"
 	"os"
 )
 
@@ -18,6 +19,9 @@ func main() {
 	var client *hedera.Client
 	var err error
 	var contract Contract
+
+	dot_env.Init()
+
 	// Retrieving network type from environment variable HEDERA_NETWORK, i.e. testnet
 	client, err = hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))
 	if err != nil {

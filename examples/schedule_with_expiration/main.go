@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"hedera_sdk_demo/dot_env"
 	"os"
 	"time"
 
@@ -11,6 +12,8 @@ import (
 func main() {
 	var client *hedera.Client
 	var err error
+
+	dot_env.Init()
 
 	// Retrieving network type from environment variable HEDERA_NETWORK
 	client, err = hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))
