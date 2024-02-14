@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/hashgraph/hedera-sdk-go/v2 v2.34.1
+	github.com/joho/godotenv v1.5.1
 	github.com/pkg/errors v0.9.1
 )
 

@@ -5,11 +5,14 @@ import (
 	"os"
 
 	"github.com/hashgraph/hedera-sdk-go/v2"
+	"hedera_sdk_demo/dot_env"
 )
 
 func main() {
 	var client *hedera.Client
 	var err error
+
+	dot_env.Init()
 
 	// Retrieving network type from environment variable HEDERA_NETWORK
 	client, err = hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))

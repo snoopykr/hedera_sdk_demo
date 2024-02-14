@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"hedera_sdk_demo/dot_env"
 	"os"
 	"time"
 
@@ -13,6 +14,8 @@ const content = `Programming is the process of creating a set of instructions th
 func main() {
 	var client *hedera.Client
 	var err error
+
+	dot_env.Init()
 
 	// Retrieving network type from environment variable HEDERA_NETWORK
 	client, err = hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))

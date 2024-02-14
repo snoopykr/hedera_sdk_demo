@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/hashgraph/hedera-sdk-go/v2"
+	"hedera_sdk_demo/dot_env"
 	"os"
+
+	"github.com/hashgraph/hedera-sdk-go/v2"
 )
 
 func main() {
+	dot_env.Init()
 
 	client, err := hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))
 	if err != nil {
