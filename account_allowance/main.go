@@ -34,6 +34,7 @@ func main() {
 	// Setting the client operator ID and key
 	client.SetOperator(operatorAccountID, operatorKey)
 
+	// Making Alice, Bob, Charlie Keys...
 	aliceKey, err := hedera.PrivateKeyGenerateEd25519()
 	if err != nil {
 		panic(fmt.Sprintf("%v : error generating PrivateKey", err))
@@ -47,6 +48,7 @@ func main() {
 		panic(fmt.Sprintf("%v : error generating PrivateKey", err))
 	}
 
+	// Setting the default Balance
 	transactionResponse, err := hedera.NewAccountCreateTransaction().
 		SetKey(aliceKey.PublicKey()).
 		SetInitialBalance(hedera.NewHbar(5)).
@@ -61,9 +63,12 @@ func main() {
 		panic(fmt.Sprintf("%v : error retrieving account creation receipt", err))
 	}
 
+	// Setting Alice Account
 	aliceID := *transactionReceipt.AccountID
 
+	// Setting the default Balance
 	transactionResponse, err = hedera.NewAccountCreateTransaction().
+		// 특정 Node를 지정.
 		SetNodeAccountIDs([]hedera.AccountID{transactionResponse.NodeID}).
 		SetKey(bobKey.PublicKey()).
 		SetInitialBalance(hedera.NewHbar(5)).
@@ -77,8 +82,10 @@ func main() {
 		panic(fmt.Sprintf("%v : error retrieving second account creation receipt", err))
 	}
 
+	// Setting Bob Account
 	bobID := *transactionReceipt.AccountID
 
+	// Setting the default Balance
 	transactionResponse, err = hedera.NewAccountCreateTransaction().
 		SetNodeAccountIDs([]hedera.AccountID{transactionResponse.NodeID}).
 		SetKey(charlieKey.PublicKey()).
@@ -93,6 +100,7 @@ func main() {
 		panic(fmt.Sprintf("%v : error retrieving second account creation receipt", err))
 	}
 
+	// Setting Charlie Account
 	charlieID := *transactionReceipt.AccountID
 
 	println("Alice's ID:", aliceID.String())
@@ -106,6 +114,7 @@ func main() {
 
 	println("Approve an allowance of 2 Hbar with owner Alice and spender Bob")
 
+	// Bob에게 Alice의 Hbar 2개를 전송할수 있는 권한을 줌.
 	approvalFreeze, err := hedera.NewAccountAllowanceApproveTransaction().
 		SetNodeAccountIDs([]hedera.AccountID{transactionResponse.NodeID}).
 		ApproveHbarAllowance(aliceID, bobID, hedera.NewHbar(2)).
@@ -183,6 +192,7 @@ func main() {
 
 	transactionReceipt, err = transactionResponse.GetReceipt(client)
 	if err != nil {
+		// exceptional receipt status: AMOUNT_EXCEEDS_ALLOWANCE , Transfer failed as expected
 		println(err.Error(), ", Transfer failed as expected")
 	}
 

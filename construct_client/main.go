@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"hedera_sdk_demo/dot_env"
 	"os"
 
 	"github.com/hashgraph/hedera-sdk-go/v2"
@@ -17,6 +18,8 @@ func main() {
 
 	println("Client Construction Example.")
 
+	dot_env.InitEnv()
+
 	// Creating client from the set HEDERA_NETWORK environment variable
 	namedNetworkClient, err := hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))
 	if err != nil {
@@ -30,7 +33,7 @@ func main() {
 	}
 
 	// Creating a PrivateKey from a random key string we have
-	key, err := hedera.PrivateKeyFromString("302e020100300506032b657004220420db484b828e64b2d8f12ce3c0a0e93a0b8cce7af1bb8f39c97732394482538e10")
+	key, err := hedera.PrivateKeyFromString(os.Getenv("OPERATOR_KEY"))
 	if err != nil {
 		panic(fmt.Sprintf("%v : error creating PrivateKey from string", err))
 	}
