@@ -54,7 +54,7 @@ func main() {
 	}()
 
 	// R contents from hello_world.json file
-	rawContract, err := os.ReadFile("./hello_world.json")
+	rawContract, err := os.ReadFile("./create_simple_contract/hello_world.json")
 	if err != nil {
 		panic(fmt.Sprintf("%v : error reading hello_world.json", err))
 	}

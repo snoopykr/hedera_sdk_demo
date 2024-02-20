@@ -55,7 +55,7 @@ func main() {
 	}()
 
 	// Read in the compiled contract from stateful.json
-	rawSmartContract, err := os.ReadFile("./stateful.json")
+	rawSmartContract, err := os.ReadFile("./create_stateful_contract/stateful.json")
 	if err != nil {
 		panic(fmt.Sprintf("%v : error reading stateful.json", err))
 	}
