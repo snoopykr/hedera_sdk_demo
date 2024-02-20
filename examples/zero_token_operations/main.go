@@ -20,7 +20,7 @@ func main() {
 	var err error
 	var contract Contract
 
-	dot_env.Init()
+	dot_env.InitEnv()
 
 	// Retrieving network type from environment variable HEDERA_NETWORK, i.e. testnet
 	client, err = hedera.ClientForName(os.Getenv("HEDERA_NETWORK"))

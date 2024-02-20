@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	dot_env.Init()
+	dot_env.InitEnv()
 
 	// Our hypothetical primary service only knows the operator/sender's account ID and the recipient's accountID
 	operatorAccountID, err := hedera.AccountIDFromString(os.Getenv("OPERATOR_ID"))

@@ -21,7 +21,7 @@ func main() {
 	var client *hedera.Client
 	var err error
 
-	dot_env.Init()
+	dot_env.InitEnv()
 
 	net := os.Getenv("HEDERA_NETWORK")
 	client, err = hedera.ClientForName(net)
